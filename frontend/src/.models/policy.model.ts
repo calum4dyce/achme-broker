@@ -1,4 +1,5 @@
 export class Policy {
+  id: number;
     clientName: string;
     customerName: string;
     customerAddress: string;

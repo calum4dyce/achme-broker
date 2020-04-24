@@ -11,6 +11,7 @@ export class AppComponent implements OnInit{
   title = 'frontend';
   active = 'top';
   policies: Policy[];
+  activeID = [];
   constructor(private policyService: PolicyService) {
   }
   ngOnInit() {
@@ -18,5 +19,14 @@ export class AppComponent implements OnInit{
       this.policies = data;
       console.log(this.policies);
     });
+  }
+
+  allIDs() {
+    let output = [];
+    this.policies.forEach(policy => {
+      output.push('policy' + policy.id);
+    });
+    console.log(output);
+    return output;
   }
 }

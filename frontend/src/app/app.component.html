@@ -2,8 +2,11 @@
 <span class="navbar-brand mb-0 h1">Achme Broker</span>
 </nav>
 <div class="container">
-  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-    <ngb-panel *ngFor="let policy of policies" [title]="policy.customerName" >
+  <button class="btn btn-primary" (click)="activeID = allIDs()">Expand All</button>
+  <button class="btn btn-danger" (click)="activeID = []">Close All</button>
+
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" [activeIds]="activeID">
+    <ngb-panel *ngFor="let policy of policies; let i = index" [id]="'policy' + policy.id" [title]="policy.customerName" >
       <ng-template ngbPanelContent>
         <strong>Customer Address: </strong> {{policy.customerAddress}}<br>
         <strong>Premium: </strong> {{policy.premium | currency:'GBP'}}<br>
