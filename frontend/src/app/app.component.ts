@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { PolicyService} from "../.services/policy.service";
+import {Policy} from "../.models/policy.model";
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,13 @@ import { PolicyService} from "../.services/policy.service";
 export class AppComponent implements OnInit{
   title = 'frontend';
   active = 'top';
-
+  policies: Policy[];
   constructor(private policyService: PolicyService) {
   }
   ngOnInit() {
     this.policyService.getPolicies().subscribe( data => {
-      console.log(data);
+      this.policies = data;
+      console.log(this.policies);
     });
   }
 }

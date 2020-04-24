@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from "@angular/common/http";
+import {map} from "rxjs/operators";
+import {Policy} from "../.models/policy.model";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,6 @@ export class PolicyService {
   constructor(private http: HttpClient) { }
 
   getPolicies() {
-    return this.http.get(this.apiUrl);
+    return this.http.get<Policy[]>(this.apiUrl);
   }
 }

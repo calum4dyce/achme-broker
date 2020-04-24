@@ -10,7 +10,7 @@ class ClientPolicy extends Model
 
     protected $table = 'client_policies';
     protected $fillable = [
-        'client-name', 'customer-name','customer-address','premium','policy-type', 'insurer-name'
+        'clientName', 'customerName','customerAdress','premium','policyType', 'insurerName'
     ];
 
 }
