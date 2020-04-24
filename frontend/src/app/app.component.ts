@@ -9,12 +9,12 @@ import {Policy} from "../.models/policy.model";
 })
 export class AppComponent implements OnInit{
   title = 'frontend';
-  active = 'top';
   policies: Policy[];
   activeID = [];
   constructor(private policyService: PolicyService) {
   }
   ngOnInit() {
+    //Get policy data from backend
     this.policyService.getPolicies().subscribe( data => {
       this.policies = data;
       console.log(this.policies);
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit{
   }
 
   allIDs() {
+    //Used to expand all panels
     let output = [];
     this.policies.forEach(policy => {
       output.push('policy' + policy.id);
