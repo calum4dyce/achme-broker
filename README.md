@@ -9,6 +9,7 @@ The SQL server settings are located in the .env file. These should be changed to
 To serve the backend locally run: 
 > php -S localhost:8000 -t public
 ## Frontend
+The frontend uses Angular.
 To install the frontend dependencies run
 > npm install
 
