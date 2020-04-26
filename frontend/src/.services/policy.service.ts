@@ -11,6 +11,7 @@ export class PolicyService {
   constructor(private http: HttpClient) { }
 
   getPolicies() {
+    // Http GET request for policies.
     return this.http.get<Policy[]>(this.apiUrl);
   }
 }

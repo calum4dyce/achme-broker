@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { PolicyService} from "../.services/policy.service";
 import {Policy} from "../.models/policy.model";
 
@@ -10,24 +10,22 @@ import {Policy} from "../.models/policy.model";
 export class AppComponent implements OnInit{
   title = 'frontend';
   policies: Policy[];
-  activeID = [];
+  policyTypes = new Set();
+  selectedPolicyType: string = 'default';
   constructor(private policyService: PolicyService) {
   }
+
   ngOnInit() {
     //Get policy data from backend
     this.policyService.getPolicies().subscribe( data => {
       this.policies = data;
-      console.log(this.policies);
+
+      // Adds each policy type to policyTypes set so there are no duplicates.
+      this.policies.forEach(policy => {
+        this.policyTypes.add(policy.policyType);
+      })
     });
+
   }
 
-  allIDs() {
-    //Used to expand all panels
-    let output = [];
-    this.policies.forEach(policy => {
-      output.push('policy' + policy.id);
-    });
-    console.log(output);
-    return output;
-  }
 }

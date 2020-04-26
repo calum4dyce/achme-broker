@@ -1,12 +1,22 @@
 <nav class="navbar navbar-light bg-light">
 <span class="navbar-brand mb-0 h1">Achme Broker</span>
 </nav>
-<div class="container">
-  <button class="btn btn-primary" (click)="activeID = allIDs()">Expand All</button>
-  <button class="btn btn-danger" (click)="activeID = []">Close All</button>
 
-  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" [activeIds]="activeID">
-    <ngb-panel *ngFor="let policy of policies; let i = index" [id]="'policy' + policy.id" [title]="policy.customerName" >
+<div class="container">
+  <div class="row">
+    <button class="btn btn-primary" (click)="acc.expandAll()">Expand All</button>
+    <button class="btn btn-danger" (click)="acc.collapseAll()">Close All</button>
+    <label class="ml-auto">
+      <select class="custom-select" [(ngModel)]="selectedPolicyType">
+        <option [value]="'default'">Sort By Policy Type</option>
+        <option *ngFor="let policyType of policyTypes" [value]="policyType">{{policyType}}</option>
+      </select>
+    </label>
+  </div>
+
+
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel *ngFor="let policy of policies| policyType: selectedPolicyType; let i = index" [id]="'policy' + policy.id" [title]="policy.customerName" >
       <ng-template ngbPanelContent>
         <strong>Customer Address: </strong> {{policy.customerAddress}}<br>
         <strong>Premium: </strong> {{policy.premium | currency:'GBP'}}<br>
